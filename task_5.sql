@@ -1,4 +1,4 @@
-\c a_new_database
+\c my_new_database
 
 SELECT
     S.name AS Student,
@@ -7,6 +7,6 @@ SELECT
 FROM
     Student S
 JOIN
-    Student M ON S.city = M.city AND S.id <> M.id
+    Mentor M ON S.city = M.city
 ORDER BY
     S.city, S.name, M.name;

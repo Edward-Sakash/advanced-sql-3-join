@@ -1,27 +1,15 @@
-\c a_new_database
+\c my_new_database
 
--- Subquery to list mentors with their assigned students
 SELECT
     M.name AS Mentor,
-    S.name AS Student,
-    M.city AS "Mentor’s city",
-    S.city AS "Student’s city"
+    S.name AS Student, -- Use COALESCE to display an empty string instead of NULL
+    
+    M.city AS "Mentors city",
+    S.city AS "Students city" 
+    
 FROM
-    Mentor M
-JOIN
-    Student S ON M.id = S.mentor_id
-
-UNION ALL
-
--- Subquery to list mentors with no students (LEFT JOIN with NULL students)
-SELECT
-    M.name AS Mentor,
-    NULL AS Student,
-    M.city AS "Mentor's city",
-    NULL AS "Student's city"
-FROM
-    Mentor M
-WHERE
-    M.id NOT IN (SELECT DISTINCT mentor_id FROM Student)
+    Student S
+RIGHT JOIN
+    Mentor M ON S.mentor_id = M.id
 ORDER BY
-    Mentor, Student;
+    M.name;    

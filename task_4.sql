@@ -1,10 +1,10 @@
-\c a_new_database
+\c my_new_database
 
 SELECT
     M.name AS Mentor,
     S.name AS Student,
-    M.city AS "Mentor’s city",
-    S.city AS "Student’s city"
+    M.city AS "Mentors city",
+    S.city AS "Students city"
 FROM
     Mentor M
 JOIN
@@ -12,4 +12,4 @@ JOIN
 WHERE
     M.city = 'Berlin' OR S.city = 'Berlin'
 ORDER BY
-    Mentor, Student;
+    Mentor;
